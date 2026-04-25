@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>YouDent — Импланты в Астане</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0a0a0f;--card:#13131a;--border:#222235;--accent:#3B9EFF;--green:#25D366;--text:#f0f0f8;--muted:#6a6a88;--red:#ef4444}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif}
+
+body::before{content:'';position:fixed;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,158,255,0.1) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative;z-index:1}
+
+/* TOP */
+.top{text-align:center;margin-bottom:28px}
+.logo{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-0.5px;margin-bottom:6px}
+.logo span{color:var(--accent)}
+.urgency{display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:700;color:#fca5a5}
+.dot{width:6px;height:6px;border-radius:50%;background:#ef4444;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+
+/* PROGRESS */
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.progress-pct{font-size:11px;color:var(--accent);font-weight:700}
+.progress-bar{height:4px;background:#1e1e30;border-radius:99px;overflow:hidden;margin-bottom:20px}
+.progress-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .4s ease}
+
+/* QUESTION */
+.q-tag{font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.q-text{font-size:17px;font-weight:800;line-height:1.35;margin-bottom:18px;color:var(--text)}
+
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{background:#0d0d18;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;cursor:pointer;font-size:14px;font-weight:600;color:var(--text);text-align:left;transition:all .15s;display:flex;align-items:center;gap:11px;width:100%}
+.opt:active{transform:scale(0.97)}
+.opt.selected{border-color:var(--accent);background:rgba(59,158,255,0.08);color:var(--accent)}
+.opt-icon{font-size:18px;width:32px;text-align:center;flex-shrink:0}
+.opt-sub{font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;display:block}
+.opt.selected .opt-sub{color:rgba(59,158,255,0.7)}
+
+/* NAV */
+.nav{display:flex;gap:8px;margin-top:18px}
+.btn-next{flex:1;background:var(--accent);color:#fff;border:none;border-radius:11px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .15s}
+.btn-next:disabled{background:#1e1e30;color:var(--muted);cursor:default}
+.btn-next:not(:disabled):hover{background:#2b8ee8}
+.btn-back{width:44px;height:44px;background:#0d0d18;border:1.5px solid var(--border);border-radius:11px;cursor:pointer;color:var(--muted);font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.btn-back:hover{border-color:var(--accent);color:var(--accent)}
+
+/* FORM */
+.form-bonus{background:rgba(59,158,255,0.06);border:1px solid rgba(59,158,255,0.2);border-radius:12px;padding:14px;margin-bottom:16px}
+.fb-title{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:8px}
+.fb-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.fb-list li{font-size:12px;color:var(--text);display:flex;align-items:center;gap=7px}
+.fb-list li::before{content:'✓';color:#25D366;font-weight:800;margin-right:7px}
+
+.inp-wrap{margin-bottom:12px}
+.inp-wrap label{display:block;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.inp-wrap input{width:100%;background:#0d0d18;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font-size:16px;color:var(--text);outline:none;transition:border .2s;font-family:inherit}
+.inp-wrap input:focus{border-color:var(--accent)}
+.inp-wrap input::placeholder{color:#2a2a45}
+
+.btn-wa{width:100%;background:var(--green);color:#fff;border:none;border-radius:11px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:4px;transition:all .15s}
+.btn-wa:hover{background:#1dbd5a}
+.btn-wa:active{transform:scale(0.97)}
+.privacy{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.5}
+
+/* THANKS */
+.thanks{text-align:center;padding:8px 0}
+.ty-emoji{font-size:48px;margin-bottom:16px}
+.ty-title{font-size:20px;font-weight:900;margin-bottom:8px}
+.ty-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.ty-info{background:#0d0d18;border-radius:12px;padding:14px;margin-bottom:20px;display:flex;gap:10px}
+.ti-item{flex:1;text-align:center}
+.ti-val{font-size:18px;font-weight:900;color:var(--accent)}
+.ti-label{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:20px;right:18px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:pulse-wa 2.5s infinite;text-decoration:none}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)}}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="logo">You<span>Dent</span> · Астана</div>
+    <div class="urgency">
+      <div class="dot"></div>
+      Осталось 3 места на этой неделе
+    </div>
+  </div>
+
+  <div class="card">
+    <!-- ПРОГРЕСС -->
+    <div id="progress-wrap">
+      <div class="progress-row">
+        <span class="progress-label">Вопрос <span id="cur">1</span> из 4</span>
+        <span class="progress-pct" id="pct">25%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="fill" style="width:25%"></div></div>
+    </div>
+
+    <!-- ШАГ 1 -->
+    <div id="step-1">
+      <div class="q-tag">Вопрос 1</div>
+      <div class="q-text">Что вас беспокоит?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(1,this)"><span class="opt-icon">🦷</span><span>Потерял зуб — стесняюсь улыбаться</span></button>
+        <button class="opt" onclick="pick(1,this)"><span class="opt-icon">😬</span><span>Ношу протез — неудобно и выпадает</span></button>
+        <button class="opt" onclick="pick(1,this)">
+          <span class="opt-icon">✨</span>
+          <span>Нет почти всех зубов — хочу All-on-4<span class="opt-sub">Все зубы за 1 день на 4 имплантах</span></span>
+        </button>
+        <button class="opt" onclick="pick(1,this)"><span class="opt-icon">🤔</span><span>Хочу проверить — нужны ли импланты</span></button>
+      </div>
+      <div class="nav"><button class="btn-next" id="btn-1" onclick="next(2)" disabled>Далее →</button></div>
+    </div>
+
+    <!-- ШАГ 2 -->
+    <div id="step-2" class="hidden">
+      <div class="q-tag">Вопрос 2</div>
+      <div class="q-text">Сколько зубов нужно восстановить?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(2,this)"><span class="opt-icon">1️⃣</span><span>1–2 зуба</span></button>
+        <button class="opt" onclick="pick(2,this)"><span class="opt-icon">🔢</span><span>3–5 зубов</span></button>
+        <button class="opt" onclick="pick(2,this)"><span class="opt-icon">💯</span><span>Все или почти все зубы</span></button>
+        <button class="opt" onclick="pick(2,this)"><span class="opt-icon">❓</span><span>Не знаю — нужна диагностика</span></button>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="back(1)">←</button>
+        <button class="btn-next" id="btn-2" onclick="next(3)" disabled>Далее →</button>
+      </div>
+    </div>
+
+    <!-- ШАГ 3 -->
+    <div id="step-3" class="hidden">
+      <div class="q-tag">Вопрос 3</div>
+      <div class="q-text">Что останавливает прямо сейчас?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(3,this)"><span class="opt-icon">💸</span><span>Думаю, что очень дорого</span></button>
+        <button class="opt" onclick="pick(3,this)"><span class="opt-icon">😰</span><span>Боюсь боли и долгого лечения</span></button>
+        <button class="opt" onclick="pick(3,this)"><span class="opt-icon">🤷</span><span>Не знаю с чего начать</span></button>
+        <button class="opt" onclick="pick(3,this)"><span class="opt-icon">🔥</span><span>Ничего — готов записаться!</span></button>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="back(2)">←</button>
+        <button class="btn-next" id="btn-3" onclick="next(4)" disabled>Далее →</button>
+      </div>
+    </div>
+
+    <!-- ШАГ 4 -->
+    <div id="step-4" class="hidden">
+      <div class="q-tag">Вопрос 4</div>
+      <div class="q-text">Когда планируете начать лечение?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(4,this)"><span class="opt-icon">🔥</span><span>Как можно скорее</span></button>
+        <button class="opt" onclick="pick(4,this)"><span class="opt-icon">📅</span><span>В этом месяце</span></button>
+        <button class="opt" onclick="pick(4,this)"><span class="opt-icon">🗓</span><span>Через 1–3 месяца</span></button>
+        <button class="opt" onclick="pick(4,this)"><span class="opt-icon">💭</span><span>Пока изучаю варианты</span></button>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="back(3)">←</button>
+        <button class="btn-next" id="btn-4" onclick="next('form')" disabled>Узнать стоимость →</button>
+      </div>
+    </div>
+
+    <!-- ФОРМА -->
+    <div id="step-form" class="hidden">
+      <div class="form-bonus">
+        <div class="fb-title">🎁 Вы получите бесплатно:</div>
+        <ul class="fb-list">
+          <li>Консультация имплантолога (8 000 ₸)</li>
+          <li>Расчёт стоимости под ваш случай</li>
+          <li>Рассрочка 0% на 24 месяца</li>
+        </ul>
+      </div>
+      <div class="inp-wrap">
+        <label>Ваше имя</label>
+        <input type="text" id="inp-name" placeholder="Например: Айгерим"/>
+      </div>
+      <div class="inp-wrap">
+        <label>Номер телефона</label>
+        <input type="tel" id="inp-phone" placeholder="+7 (___) ___-__-__"/>
+      </div>
+      <div class="nav" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:8px">
+          <button class="btn-back" onclick="back(4)">←</button>
+          <button class="btn-wa" onclick="submit()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.121 1.527 5.855L.057 23.882l6.218-1.633A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.366l-.358-.214-3.722.977.994-3.638-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+            Записаться бесплатно
+          </button>
+        </div>
+      </div>
+      <div class="privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</div>
+    </div>
+
+    <!-- СПАСИБО -->
+    <div id="step-thanks" class="hidden">
+      <div class="thanks">
+        <div class="ty-emoji">🎉</div>
+        <div class="ty-title">Заявка принята!</div>
+        <p class="ty-sub">Администратор свяжется с вами в течение 15 минут и запишет на бесплатную консультацию</p>
+        <div class="ty-info">
+          <div class="ti-item"><div class="ti-val">120 000 ₸</div><div class="ti-label">Имплант от</div></div>
+          <div class="ti-item"><div class="ti-val">440 000 ₸</div><div class="ti-label">All-on-4 от</div></div>
+          <div class="ti-item"><div class="ti-val">0%</div><div class="ti-label">Рассрочка</div></div>
+        </div>
+        <button class="btn-wa" onclick="openWA()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.121 1.527 5.855L.057 23.882l6.218-1.633A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.366l-.358-.214-3.722.977.994-3.638-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          Написать в WhatsApp
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FLOAT WA -->
+<a class="float-wa" href="https://wa.me/77755085817" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.121 1.527 5.855L.057 23.882l6.218-1.633A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.366l-.358-.214-3.722.977.994-3.638-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+</a>
+
+<script>
+const TG_TOKEN = '8749500968:AAGiHNdE9MSaH--F9kpxjkzR8Fk1wic2XWs';
+const TG_CHAT = '-1003654435296';
+const WA = '77755085817';
+
+const answers = {};
+let waMsg = '';
+
+const pcts = {1:25,2:50,3:75,4:90,'form':95,'thanks':100};
+
+function show(id) {
+  ['step-1','step-2','step-3','step-4','step-form','step-thanks'].forEach(s => {
+    document.getElementById(s).classList.add('hidden');
+  });
+  document.getElementById('step-'+id).classList.remove('hidden');
+}
+
+function updateProgress(step) {
+  const p = pcts[step] || 25;
+  document.getElementById('fill').style.width = p+'%';
+  document.getElementById('pct').textContent = p+'%';
+  if(typeof step === 'number') {
+    document.getElementById('cur').textContent = step;
+    document.getElementById('progress-wrap').style.display = '';
+  }
+}
+
+function pick(step, el) {
+  document.querySelectorAll(`#step-${step} .opt`).forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[step] = el.textContent.trim().split('\n')[0].trim();
+  document.getElementById(`btn-${step}`).disabled = false;
+}
+
+function next(step) {
+  show(step);
+  updateProgress(step);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function back(step) {
+  show(step);
+  updateProgress(step);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submit() {
+  const name = document.getElementById('inp-name').value.trim();
+  const phone = document.getElementById('inp-phone').value.trim();
+  if(!name){alert('Введите ваше имя');return;}
+  if(!phone||phone.length<10){alert('Введите номер телефона');return;}
+
+  // Telegram
+  const text = `🦷 Новая заявка — YouDent!\n\n👤 ${name}\n📞 ${phone}\n\n📋 Ответы:\n• ${answers[1]||'—'}\n• ${answers[2]||'—'}\n• ${answers[3]||'—'}\n• ${answers[4]||'—'}\n\n📅 ${new Date().toLocaleString('ru-RU')}\n🔗 TikTok / Quiz`;
+  fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({chat_id:TG_CHAT,text})
+  }).catch(()=>{});
+
+  waMsg = encodeURIComponent(`Здравствуйте! Меня зовут ${name}.\nТелефон: ${phone}\n\nМои ответы:\n• ${answers[1]||'—'}\n• ${answers[2]||'—'}\n• ${answers[3]||'—'}\n• ${answers[4]||'—'}\n\nХочу записаться на бесплатную консультацию.`);
+
+  show('thanks');
+  document.getElementById('progress-wrap').style.display='none';
+  setTimeout(()=>openWA(), 800);
+}
+
+function openWA() {
+  window.open(`https://wa.me/${WA}?text=${waMsg}`,'_blank');
+}
+</script>
+</body>
+</html>
